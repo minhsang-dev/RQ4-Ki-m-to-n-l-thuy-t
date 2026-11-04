@@ -143,3 +143,9 @@ Ghi chú: D8 làm Mệnh đề 2 yếu đi ở chế độ B (xem `03_PROPOSITIO
 | E1 | **Đính chính của tôi:** số nhãn mỗi nguồn mỗi ngày mà kiểm toán thấy là `b/K` (D14 của nhật ký; dòng dành riêng đi tới cùng nguồn, D17), không phải `(1−η)b/K` như tôi viết ở `02` §1, `03` C-B/2′ và `05` P4b. Đã đính chính tại chỗ. Ví dụ b=1000, K=5: 200 (nhật ký: "200 labels/source/day") thay vì 160; C-B ≈11 ngày thay vì 13 (nhật ký: "~10–13"). Cần NCS xác nhận kiểm toán gồm dòng dành riêng. | sai sót của tôi, đã sửa |
 
 **Đối chiếu khác (khớp):** G0–G4 trạng thái, D1–D14, G2-1…3, G3 (B1, oracle V_t, tuning ≤12, `I_i` TabFM chính), G4 (Q-G4-1…5, thống kê, P4a), §3 các phát hiện, §5 mục 7–11 (khớp O1–O7 của `06`). Nhật ký đếm 38 công trình + [34],[35] = 40, khớp tệp prior art. Nhật ký ghi "koh2022→koh2021" và hai mục bib mới: khớp D23.
+
+## L. Quy tắc quyết định H4a/H4b — PROPOSAL (2026-11-04)
+
+| ID | Nội dung | Nhãn |
+|---|---|---|
+| D37 | NCS: E1 xác nhận (kiểm toán thấy cả dòng dành riêng, `b/K` nhãn/nguồn/ngày). Quy tắc quyết định theo ô × kiểu, đơn vị ngày gốc, Wilcoxon một phía: **T1** `d_r = 0,5·A_r(none) − A_r(def) > 0`; **T2** `A_r(B1) − A_r(def) − biên > 0` (biên sau P4a, D22); **T3** `ε₄ − (F1_r(none) − F1_r(def)) > 0` (non-inferiority); **T4/T5** H4b: `A_r(none) − A_r(def) > 0` và tương tự so với B1, không có 50%. Ô đạt H4a khi T1–T3 cùng đạt. Trung vị `RR_r` chỉ báo cáo. Ghi ở `05` §6c. Thay thế đề xuất RR trước đó của tôi. | PROPOSAL |

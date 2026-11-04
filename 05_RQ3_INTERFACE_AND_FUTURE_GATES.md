@@ -135,8 +135,8 @@ Giảm `|V_t|` ít giúp (SL): chi phí chủ yếu ở mã hóa ngữ cảnh 20
 | Tấn công | lưới chính (ii)–(v), chế độ A; điểm gãy (i),(vi); chế độ B: cờ oan + (ii) phụ | ĐC; D13 |
 | Đối thủ | K0/K1 (surrogate), không K2; (iv): lật họ mục tiêu, tỷ lệ = ngưỡng tầng nguồn − δ; δ `TBD` sau khi có đặc tả DoP | D11, D12 |
 | ASR | `ASR_raw`, `ASR_excess` (D1); `RR = 1 − ASR_excess(att,def)/ASR_excess(att,none)`; chẩn đoán `ASR_excess_matched` | D1 (ĐX) |
-| Estimand H4a (theo mẫu Q15 của RQ3, ĐX cần NCS xác nhận) | mỗi ô, mỗi kiểu (ii)/(iii): `RR_r` mỗi ngày gốc `r`; ô được ủng hộ nếu **trung vị `RR_r` ≥ 0,5** và Wilcoxon một phía trên hiệu cặp `ASR_excess(none) − ASR_excess(def)` theo ngày gốc cho p < α (DEV: p chưa hiệu chỉnh); không gộp ô. `RR ≥ 0,5` trên `ASR_excess`; tốt hơn RONI: chênh `ASR_excess` ≥ biên `TBD` + CI; `ΔF1_clean ≤ ε₄ = 0,01` với F1 = **macro-F1 tại `λ_t`** (D27) | ĐC (50%, ε₄); biên: D22 |
-| Estimand H4b | `ASR_excess` giảm so với S0 và B1, CI loại trừ 0; **không** có ngưỡng 50% | ĐC |
+| Estimand H4a — **PROPOSAL (D37)** | Xem §6c. Mỗi ô × mỗi kiểu (ii)/(iii), không gộp; đạt chỉ khi **cả ba** kiểm định T1–T3 (Wilcoxon một phía, đơn vị = ngày gốc) cùng đạt. F1 = **macro-F1 tại `λ_t`** (D27) | ĐC (50%, ε₄ = 0,01); biên T2: D22 |
+| Estimand H4b — **PROPOSAL (D37)** | Xem §6c, T4. Mỗi ô × mỗi kiểu (iv)/(v), không gộp; **không** có mục tiêu 50% | ĐC |
 | Báo cáo riêng | H4a, H4b độc lập kết luận | ĐC |
 | Kiểu (ii)–(iii) | **Kết luận H4a riêng cho từng kiểu** (D24): "H4a(ii) đạt/không đạt", "H4a(iii) đạt/không đạt", mỗi kiểu có RR, so RONI, ΔF1. Chỉ được viết "H4a đạt đầy đủ" khi cả hai đạt; nếu chỉ một đạt, viết đúng kiểu đó | D24 |
 | Nhánh | S0–S3, B1 (Nelson-protocol adaptation), B2, B3; B4 tùy chọn (D18) | ĐC; D18 |
@@ -162,6 +162,30 @@ Kiểm định Wilcoxon một phía chính xác: `p_min = 1/2ⁿ`. Điều kiệ
 | 16 | 9 | 0.0020 |
 
 Hệ quả: nếu H4a xét (ii) và (iii) qua nhiều ô thì `m` lớn; ví dụ `m = 4` cần ≥7 ngày gốc (khớp lời NCS). Họ `m` phải khai báo trước cùng với danh sách ô; **Phạm vi (đính chính theo NCS và `THESIS_AUDIT_LOG` §2 cuối):** quy tắc `1/2ⁿ < α/m` chỉ ràng buộc **họ kiểm định xác nhận** đã khai báo; thiếu ngày gốc ở đó ⇒ `HOLD` cho nghiên cứu xác nhận (không đào thêm vòng DEV). Các probe DEV P4a–P4d dùng **p chưa hiệu chỉnh** làm tiêu chí và chỉ báo p-Holm để mô tả (như RQ3 G4); thiếu ngày gốc ở DEV **không** tự dẫn tới HOLD. Họ xác nhận: Holm trên một họ chính nhỏ khai báo trước, hoặc đủ ngày gốc (RQ3 chọn phương án họ chính `m ≤ 3` ô, sau P3a). Cùng quy tắc với tiền đăng ký RQ3.
+
+## 6c. Quy tắc quyết định H4a/H4b — **PROPOSAL** (D37, NCS 2026-11-04; thay thế đề xuất theo mẫu Q15 ở phiên bản trước)
+
+Áp dụng cho **từng ô và từng kiểu tấn công**, không gộp. Đơn vị = **ngày gốc `r`** (mỗi đại lượng là trung vị qua seed/kịch bản trong ngày gốc đó). Mọi kiểm định là Wilcoxon signed-rank **một phía** theo hướng đăng ký trước, mức `α`. Ký hiệu `A(·)` = `ASR_excess` (D1) của nhánh; `none` = S0; `def` = S3; B1 theo D18 (biến thể giảm lặp phải có tên riêng, D25).
+
+| ID | Hỏi | Đại lượng theo ngày gốc `r` | H1 (một phía) |
+|---|---|---|---|
+| T1 | giảm ≥ 50% | `d_r = 0,5·A_r(none) − A_r(def)` | `d_r > 0` |
+| T2 | tốt hơn RONI | `e_r = A_r(B1) − A_r(def) − biên` | `e_r > 0`; `biên` chốt sau P4a (D22), `TBD` |
+| T3 | F1 sạch không kém (non-inferiority) | `g_r = ε₄ − (F1_r(none) − F1_r(def))` | `g_r > 0`, `ε₄ = 0,01`, F1 = macro-F1 tại `λ_t` |
+| T4 | H4b: giảm so với không phòng thủ | `h_r = A_r(none) − A_r(def)` | `h_r > 0` |
+| T5 | H4b: tốt hơn RONI | `k_r = A_r(B1) − A_r(def)` | `k_r > 0` (không có biên: v14.3 và NCS không nêu; thêm biên là ĐX riêng) |
+
+**Quy tắc đạt.** Ô × kiểu (ii) hoặc (iii) **đạt H4a** khi T1, T2, T3 **cùng** đạt. Ô × kiểu (iv) hoặc (v) **đạt H4b** khi T4 và T5 cùng đạt (H4b không kèm điều kiện F1 theo chữ v14.3 — H4b chỉ nêu giảm ASR so với S0 và RONI; thêm T3 là ĐX riêng nếu NCS muốn). Phát biểu kết luận ghi đúng ô và kiểu đạt; "H4a đạt đầy đủ" chỉ khi cả (ii) và (iii) đạt (D24). Trung vị `RR_r` chỉ báo cáo làm **ước lượng điểm**, không dùng để kiểm định; HL cho hiệu mỗi kiểm định để báo cáo kích thước hiệu ứng.
+
+**Lý do (NCS):** Wilcoxon trên hiệu `A(none) − A(def)` chỉ cho biết có giảm, không kiểm được ≥50%; `RR_r` không ổn định khi mẫu số nhỏ và vô định khi `A_r(none) ≤ 0`; `d_r` luôn xác định.
+
+**Ghi chú của tôi (SL, để NCS cân nhắc, chưa quyết):**
+1. *Ngày gốc có `A_r(none) ≤ 0`:* `d_r` vẫn xác định nhưng gần như chắc ≤ 0 (chỉ dương nếu `A_r(def)` âm hơn) và kéo T1 xuống; điều đó đúng bản chất (không có tổn hại để giảm) nhưng làm P4a quan trọng hơn. Nên báo số ngày gốc loại theo điều kiện này.
+2. *Hiệu bằng 0:* Wilcoxon bỏ các hiệu bằng 0, làm `n` hiệu dụng nhỏ hơn số ngày gốc; quy tắc `1/2ⁿ < α/m` (D34) phải áp lên `n` hiệu dụng. Ngày gốc tới ngưỡng ceiling/floor (như RQ2 `AP=1`) dễ cho hiệu 0.
+3. *T3 (non-inferiority):* kiểm Wilcoxon trên biến dịch `g_r` diễn giải là dịch trung vị chỉ khi hiệu `F1(none) − F1(def)` đối xứng quanh trung vị của nó; nên đăng ký kiểm tra độ đối xứng hoặc báo HL kèm.
+4. *Phép giao (T1∧T2∧T3):* mỗi ô × kiểu đạt khi cả ba kiểm định đạt ở mức `α` (giao các kiểm định không cần hiệu chỉnh thêm trong ô — kiểm định giao–hợp). Với họ xác nhận `m` ô × kiểu, quy tắc `1/2ⁿ < α/m` (D34) đếm `m` là số **ô × kiểu**, không phải số kiểm định (3 hay 2 mỗi ô). NCS xác nhận cách đếm `m`.
+5. *B1 giảm lặp (D25)* đổi nghĩa T2 (so với "B1-R" chứ không phải B1); báo cáo T2 theo tên nhánh thực dùng.
+6. *Phạm vi:* ở DEV (P4a–P4d) dùng p chưa hiệu chỉnh làm tiêu chí, p-Holm mô tả (D36); ở xác nhận, họ khai báo trước.
 
 **Quy tắc GO/HOLD/NO-GO (hồ sơ §6, giữ nguyên nghĩa).**
 - GO: giả định được hỗ trợ sơ bộ và đo được trong nguồn lực; chỉ GO thiết kế tiếp, sau phê duyệt.

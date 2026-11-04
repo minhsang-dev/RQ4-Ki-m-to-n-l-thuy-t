@@ -23,6 +23,7 @@ DECISION: `RQ4_PAPER_AUDIT = KHÉP LẠI (đã duyệt)`; `RQ4_EXPERIMENT = HOLD
 
 - **D15:** `f` đọc theo **R1** (tỷ lệ lật trên nhãn của nguồn trong ngày). Không dùng R2 để cứu Mệnh đề 2; Mệnh đề 2 như viết = ASSUMPTION GAP/COUNTEREXAMPLE, 2′ = CANDIDATE cần duyệt.
 - **D16:** cờ nguồn **bền** đến hết lượt chạy hoặc đến khi xác minh, kèm **giữ hồi tố** dòng trong ngữ cảnh, `V_t`, `D_cal` (PROPOSAL); không-hồi-tố là nhạy cảm; **xung đột** với A4 của Mệnh đề 1 (RQ2), giữ `OPEN` theo T2.
+- **D37 (PROPOSAL, `05` §6c):** quyết định H4a/H4b theo ô × kiểu bằng Wilcoxon một phía trên ngày gốc: T1 giảm ≥50% (`d_r=0,5·A(none)−A(def)`), T2 hơn RONI, T3 F1 sạch non-inferiority; H4b T4/T5 không có 50%.
 - **D24–D30:** H4a báo riêng từng kiểu (ii)/(iii); trần `B_pass` chung, biến thể B1 giảm lặp phải có tên riêng; HELD nhánh chính = loại, không cấp nhãn ngoài `b`; F1 sạch = macro-F1 tại `λ_t`; HB2-R tách khỏi `LOCK_HB2` với kiểm thử bit-parity; thống kê chính Wilcoxon/HL theo ngày gốc (mô hình hỗn hợp = độ nhạy); "tổn hại đủ lớn" ở P4a = CI qua ngày gốc loại trừ 0 **và** trung vị ≥ 2×SD giữa seed.
 - **D17:** nhãn dành riêng η·b theo cách **bảo thủ**: đi tới cùng nguồn, đối thủ không phân biệt, nguồn bị chiếm lật cùng tỷ lệ; rủi ro lạm phát `λ_t` qua `D_cal` là mối đe dọa có tên trong probe (đo ở P4a).
 
