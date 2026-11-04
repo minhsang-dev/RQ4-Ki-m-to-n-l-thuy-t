@@ -1,7 +1,7 @@
-STATUS: G4 DRAFT — chờ NCS duyệt. **Không chạy gì.** Toàn bộ là đặc tả và tiền đăng ký NHÁP. Mọi probe: `HOLD UNTIL RQ3 DEV + approval`.
+STATUS: G4 **ĐÃ DUYỆT** (2026-11-04; D24–D30 đã áp dụng). **Không chạy gì.** Toàn bộ là đặc tả và tiền đăng ký NHÁP. Mọi probe: `HOLD UNTIL RQ3 DEV + approval`.
 SOURCE ANCHORS: hồ sơ §2.3, §6, §7; v14.3 Định nghĩa 4–6, Nội dung 1, 3, 4; D1–D23 trong `01_REQUIREMENT_TRACE.md`; `02`, `03`, `04` của bộ này; RQ2_DECISION_LOG §8–10 (HB2).
 ASSUMPTIONS: A-G4-1 chưa có RQ3 DEV nên giao diện là *hợp đồng dữ liệu đề xuất*, không phải mô tả hệ thống có sẵn. A-G4-2 Số liệu chi phí GPU lấy từ ngoại suy do NCS cung cấp (hệ số Bài 1, **chưa đo**); tôi chỉ suy ra các con số phụ thuộc. A-G4-3 Mọi ngưỡng số mới đánh dấu `TBD` — tôi không đặt; các số cố định duy nhất: 50% và `ε₄ = 0,01` (v14.3).
-OPEN QUESTIONS: §9.
+OPEN QUESTIONS: §9 (Q-G4-1…5 đã giải quyết; còn các `TBD` và xung đột A4).
 DECISION: G4 = soạn xong thiết kế; **không** kích hoạt probe. Điều kiện kích hoạt ở §7. Đề cương: NO CHANGE NOW.
 
 Nhãn: `ĐC` đề cương · `SL` suy luận · `ĐX` đề xuất chưa duyệt · `TBD` chưa có căn cứ để chốt · `CXM` chưa xác minh.
@@ -50,14 +50,16 @@ ARRIVED --nguồn FLAGGED--------------------------> HELD_SOURCE
 ARRIVED --nguồn CLEAR/UNCERTAIN--> SCORED
 SCORED --I_i <= ngưỡng-----------> ACCEPT --HB2--> IN_CONTEXT / EVICTED
 SCORED --I_i  > ngưỡng-----------> HELD_ROW
-HELD_* --xác minh (kênh? Q-G4-3)--> ACCEPT | DISCARD
+HELD_* --nhánh chính: không xác minh trong lượt chạy = LOẠI (D26)
+HELD_* --biến thể 'verify-b': xác minh tiêu nhãn từ chính b--> ACCEPT | DISCARD
 nguồn bị cờ sau này: IN_CONTEXT/ACCEPT cũ -> HELD (hồi tố, PROPOSAL D16)
 ```
 
 **Ghi chú thiết kế.**
 - *Trục thời gian thứ hai:* phân bố dòng mà RQ3 hỏi nhãn quyết định tập nhãn RQ4 có thể kiểm toán (ví dụ RQ3 chọn theo bất định ⇒ lô nghiêng về vùng gần biên; audit ngang hàng vẫn hoán đổi được vì gán nguồn xảy ra *sau* chọn, D4). Nhưng RQ4 không dùng quyết định tương lai của RQ3 (R-T3).
 - `τ = 7`: audit ngày `t` xử lý dòng chọn ở `t−7`; số dòng/nguồn/ngày vẫn ≈ `(1−η)b/K` ở trạng thái ổn định.
-- *Hồi tố (D16):* khi nguồn `j` bị cờ ở ngày `t`: chuyển dòng của `j` trong `C_{t−1}` (và trong `V_t`, `D_cal`) sang HELD; tính lại `V_t`, `D_cal`, `λ_t`. **Xung đột** với giả định A4 của Mệnh đề 1 (RQ2, loại bỏ hồi tố): giữ `OPEN` theo T2; không đổi RQ2. HB2 chỉ nhận dòng ACCEPT nên phải hỗ trợ "gỡ dòng khỏi ngữ cảnh" — việc đó là yêu cầu mới lên HB2 (DC-1), chưa quyết.
+- *Dòng HELD (D26):* nhánh chính coi HELD là bị loại cho tới hết lượt chạy; báo cáo **tỷ lệ dòng sạch bị giữ oan** (kể cả toàn bộ dòng sạch của nguồn trung thực bị cờ oan, vì cờ bền — D16). Biến thể 'verify-b': mỗi lần xác minh trừ vào `b` (chia sẻ với chọn mẫu RQ3), nên so với S0 phải báo cả hai thiết kế ghép cặp (S0 giữ nguyên `b` cho chọn mẫu / S0 nhận phần nhãn được giải phóng). **Không có nhãn ngoài `b`.**
+- *Hồi tố (D16):* khi nguồn `j` bị cờ ở ngày `t`: chuyển dòng của `j` trong `C_{t−1}` (và trong `V_t`, `D_cal`) sang HELD; tính lại `V_t`, `D_cal`, `λ_t`. **Xung đột** với giả định A4 của Mệnh đề 1 (RQ2, loại bỏ hồi tố): giữ `OPEN` theo T2; không đổi RQ2. HB2 chỉ nhận dòng ACCEPT nên phải hỗ trợ "gỡ dòng khỏi ngữ cảnh" — cho phép qua biến thể **HB2-R** (D28): hook gỡ dòng + telemetry từng hàng, tách khỏi `LOCK_HB2`; kiểm thử hồi quy bắt buộc (không lệnh gỡ ⇒ đầu ra giống HB2 từng bit; telemetry không được tiêu thụ RNG hay đổi thứ tự thao tác, nếu không bit-parity vỡ — SL). Xung đột A4 (RQ2) vẫn `OPEN`.
 - *Chọn của RQ3 và `g(x)`:* theo D3, ngữ cảnh RQ3 dùng chỉ chứa dòng đã lọc. Bước (6) dùng `C_t` đã qua (5).
 - *RQ2 = HB2 (không ThreeBin):* mọi chỗ "chính sách nạp RQ2" = HB2 (S9). v14.3 H2 giữ nguyên chữ.
 
@@ -79,7 +81,7 @@ nguồn bị cờ sau này: IN_CONTEXT/ACCEPT cũ -> HELD (hồi tố, PROPOSAL 
 | 300 | 240 | ≈0,39 | |
 | 1000 | 800 | ≈1,3 | vượt 1 GPU-giờ của RQ3 |
 
-**Nhân với số nhánh (SL):** baseline B1 theo Nelson-protocol cần ≈10 lượt/ứng viên ⇒ ở `b=1000`: 8.000 lượt ≈ **13 GPU-giờ/ngày** theo cùng hệ số. Ngân sách tuning bằng nhau (D20) chưa đủ để công bằng nếu chi phí vận hành lệch 10 lần ⇒ ĐX: thêm **trần số lượt suy luận mỗi ngày** `B_pass` chung cho mọi nhánh; B1 giảm số lần lặp (hoặc áp xấp xỉ) để vào trần; báo cáo chi phí thực của từng nhánh. Trần `B_pass` = `TBD` (do NCS đặt sau P4d).
+**Nhân với số nhánh (SL):** baseline B1 theo Nelson-protocol cần ≈10 lượt/ứng viên ⇒ ở `b=1000`: 8.000 lượt ≈ **13 GPU-giờ/ngày** theo cùng hệ số. Ngân sách tuning bằng nhau (D20) chưa đủ để công bằng nếu chi phí vận hành lệch 10 lần ⇒ Nguyên tắc đã duyệt (D25): **trần `B_pass` chung** cho mọi nhánh; giá trị đặt sau P4d (`TBD`). Nếu B1 phải giảm số lần lặp để vào trần thì biến thể đó có **tên riêng** (ví dụ "B1-R: RONI Nelson-protocol, reduced repetitions") và không được gọi là B1; báo cáo chi phí thực (lượt/ngày, GPU-giờ) của từng nhánh.
 
 **Xấp xỉ đề xuất cho `I_i` (đều là ĐX; mọi xấp xỉ phải báo sai lệch so với cách chính xác trên mẫu con, theo tinh thần Nội dung 3 v14.3).**
 
@@ -104,7 +106,7 @@ Giảm `|V_t|` ít giúp (SL): chi phí chủ yếu ở mã hóa ngữ cảnh 20
 - **Câu hỏi:** tấn công (ii) (rồi (iii) với surrogate K1) có làm hại baseline S0 đủ để một "giảm 50%" có nghĩa không?
 - **Thiết kế:** cùng trace RQ3; clean | (i) ngẫu nhiên | (ii) | (iii); không phòng thủ; chế độ A; `K=5`, `m ∈ {1,2}` (D14, PROPOSAL); thêm phân rã kênh ngữ cảnh vs `λ_t` (§3).
 - **Chỉ số:** `ASR_raw`, `ASR_excess` (D1), macro-F1, Recall/FNR họ mục tiêu, tương quan hạng `Î_i` vs `I_i` (chỉ đánh giá).
-- **Điều kiện dừng/kết luận:** nếu cận dưới khoảng tin cậy của `ASR_excess(att, none)` không vượt nhiễu seed (ĐX: dùng chuẩn "2×SD giữa các seed" mà v14.3 dùng cho biên ε, Nội dung 1) ⇒ `HOLD_ASSUMPTION`: chưa dùng "50%" làm kết quả có nghĩa. Chốt biên "tốt hơn RONI" (D22) **sau P4a, trước tiền đăng ký**.
+- **Điều kiện dừng/kết luận (D30):** "tổn hại đủ lớn" khi thỏa **cả hai**: (a) khoảng tin cậy (Hodges–Lehmann theo ngày gốc) của `ASR_excess(att, none)` loại trừ 0; (b) trung vị `ASR_excess` qua ngày gốc ≥ 2×SD giữa các seed. SD giữa các seed: SD của `ASR_excess` qua seed trong từng ngày gốc rồi gộp (căn bậc hai trung bình bình phương) — **ĐX chi tiết, cần NCS xác nhận**. Không thỏa ⇒ `HOLD_ASSUMPTION`: chưa dùng "50%" làm kết quả có nghĩa. Seed cùng ngày gốc không độc lập nên không được dùng để tăng cỡ mẫu cho (a). Chốt biên "tốt hơn RONI" (D22) **sau P4a, trước tiền đăng ký**.
 - **Nhãn kết luận:** `ASSUMPTION FALSIFIED` / `INCONCLUSIVE` / `PROVISIONALLY SUPPORTED` (đều chỉ là DEV).
 
 ### P4b — DoP có phân biệt được nguồn bị chiếm (chế độ A và B)?
@@ -133,14 +135,14 @@ Giảm `|V_t|` ít giúp (SL): chi phí chủ yếu ở mã hóa ngữ cảnh 20
 | Tấn công | lưới chính (ii)–(v), chế độ A; điểm gãy (i),(vi); chế độ B: cờ oan + (ii) phụ | ĐC; D13 |
 | Đối thủ | K0/K1 (surrogate), không K2; (iv): lật họ mục tiêu, tỷ lệ = ngưỡng tầng nguồn − δ; δ `TBD` sau khi có đặc tả DoP | D11, D12 |
 | ASR | `ASR_raw`, `ASR_excess` (D1); `RR = 1 − ASR_excess(att,def)/ASR_excess(att,none)`; chẩn đoán `ASR_excess_matched` | D1 (ĐX) |
-| Estimand H4a | `RR ≥ 0,5` trên `ASR_excess`; tốt hơn RONI: chênh `ASR_excess` ≥ biên `TBD` + CI; `ΔF1_clean ≤ ε₄ = 0,01` | ĐC (50%, ε₄); biên: D22 |
+| Estimand H4a | `RR ≥ 0,5` trên `ASR_excess`; tốt hơn RONI: chênh `ASR_excess` ≥ biên `TBD` + CI; `ΔF1_clean ≤ ε₄ = 0,01` với F1 = **macro-F1 tại `λ_t`** (D27) | ĐC (50%, ε₄); biên: D22 |
 | Estimand H4b | `ASR_excess` giảm so với S0 và B1, CI loại trừ 0; **không** có ngưỡng 50% | ĐC |
 | Báo cáo riêng | H4a, H4b độc lập kết luận | ĐC |
-| Kiểu (ii)–(iii) | H4a "kiểu ii–iii": v14.3 không nói *cả hai* hay *một trong hai*. ĐX: coi H4a đạt chỉ khi đạt cả (ii) và (iii) (bảo thủ); Q-G4-1 | ĐX |
+| Kiểu (ii)–(iii) | **Kết luận H4a riêng cho từng kiểu** (D24): "H4a(ii) đạt/không đạt", "H4a(iii) đạt/không đạt", mỗi kiểu có RR, so RONI, ΔF1. Chỉ được viết "H4a đạt đầy đủ" khi cả hai đạt; nếu chỉ một đạt, viết đúng kiểu đó | D24 |
 | Nhánh | S0–S3, B1 (Nelson-protocol adaptation), B2, B3; B4 tùy chọn (D18) | ĐC; D18 |
 | Tuning | tối đa 12 cấu hình DEV, **bằng nhau mọi nhánh** kể cả S2, S3 (D20); thêm trần `B_pass` chung | D20; ĐX |
 | `I_i` | TabFM chính; LightGBM refit lá phụ (D21) | D21 |
-| Mô hình thống kê | hiệu ứng hỗn hợp: ngày gốc ngẫu nhiên, kịch bản lồng trong ngày gốc, bộ dữ liệu cố định; bootstrap phân cấp; công suất mô phỏng trước đăng ký; nếu <0,8 thì thêm ngày gốc, không nới biên | Nội dung 1 |
+| Thống kê chính | **Wilcoxon signed-rank + ước lượng Hodges–Lehmann theo ngày gốc** (D29): gộp seed/kịch bản về **một giá trị mỗi ngày gốc** (trung vị) cho mỗi hiệu cặp; CI từ HL. Mô hình hỗn hợp (ngày gốc ngẫu nhiên, kịch bản lồng, bộ dữ liệu cố định) + bootstrap phân cấp chỉ **độ nhạy**. Công suất mô phỏng trước đăng ký; <0,8 ⇒ thêm ngày gốc, không nới biên. *Ghi chú số học (SL):* kiểm định Wilcoxon chính xác hai phía cần ít nhất **6 ngày gốc** mới có p<0,05 (p nhỏ nhất = 2/2ⁿ: n=5 ⇒ 0,0625; n=6 ⇒ 0,031) | D29 (khác chữ Nội dung 1 v14.3) |
 | Chi phí | thời gian/CPU LightGBM; GPU-giờ TabFM mỗi nhánh; báo cáo tách chi phí nhãn và độ trễ | hồ sơ §6 |
 | `V_t`, `D_cal` | nhiễm theo D17; biến thể sạch oracle chỉ phụ (D19) | D17, D19 |
 | Kiểm soát | split-before-poisoning; Test nguyên vẹn; ngưỡng chỉ trên Validation/DEV; so cặp trên cùng trace; không suy luận độc lập từ seed cùng root | hồ sơ §6 |
@@ -162,14 +164,14 @@ Giảm `|V_t|` ít giúp (SL): chi phí chủ yếu ở mã hóa ngữ cảnh 20
 |---|---|
 | RQ3 DEV trace + chính sách chọn | chưa có |
 | Đặc tả DoP (`f*`, `β`, cờ bền) | MISSING |
-| HB2: gỡ dòng hồi tố; telemetry hàng | chưa có; xung đột A4 RQ2 mở |
+| HB2-R: gỡ dòng hồi tố; telemetry hàng; kiểm thử hồi quy bit-parity với HB2 | cho phép (D28), chưa có; xung đột A4 RQ2 mở |
 | Đo thực chi phí TabFM (P4d) | chưa đo |
 | Danh sách root DEV + ledger phơi nhiễm RQ4 | TBD |
 
 ## 9. Câu hỏi mở cho NCS
 
-- **Q-G4-1** H4a "kiểu ii–iii": đạt cả hai hay một? (ĐX: cả hai.)
-- **Q-G4-2** Trần `B_pass` chung (số lượt suy luận/ngày) cho mọi nhánh — chấp nhận nguyên tắc? Giá trị đặt sau P4d.
-- **Q-G4-3** Kênh "xác minh" cho dòng HELD (v14.3: "giữ lại chờ xác minh"): có tốn nhãn từ ngân sách b không? Chưa quy định.
-- **Q-G4-4** F1 "trên dữ liệu sạch" của H4a: macro-F1 (như H3) tại `λ_t`? (ĐX: macro-F1.)
-- **Q-G4-5** Hồi tố (D16) yêu cầu HB2 gỡ dòng khỏi ngữ cảnh: cho phép nhánh HB2 có cờ "gỡ" tách khỏi bản khóa RQ2?
+Đã giải quyết (`01` §I): Q-G4-1 → D24; Q-G4-2 → D25; Q-G4-3 → D26; Q-G4-4 → D27; Q-G4-5 → D28. Còn mở:
+- giá trị `B_pass` (sau P4d); biên "tốt hơn RONI" (D22); các `TBD` ở §6;
+- định nghĩa chi tiết "SD giữa các seed" cho D30 (ĐX ở §5 P4a);
+- xung đột A4 (RQ2) cho hồi tố;
+- danh sách root DEV (cần ≥6 ngày gốc độc lập để Wilcoxon chính xác đạt p<0,05).

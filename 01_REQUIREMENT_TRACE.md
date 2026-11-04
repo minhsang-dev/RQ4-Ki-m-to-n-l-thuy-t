@@ -112,3 +112,15 @@ Ghi chú: D8 làm Mệnh đề 2 yếu đi ở chế độ B (xem `03_PROPOSITIO
 | D21 | `I_i` nhánh chính trên TabFM. LightGBM: xấp xỉ refit lá (giữ cấu trúc cây), chỉ nhánh phụ, ghi rõ là xấp xỉ. | quyết định phân tích |
 | D22 | Biên "tốt hơn RONI" của H4a chưa chốt số; chốt sau P4a, trước tiền đăng ký, kèm lý do. | HOLD |
 | D23 | Thư mục tham khảo: `koh2022`→`koh2021` (Machine Learning 2021), thêm 2 mục; mục patent ghi rõ là patent. **Đã áp dụng** vào `RQ4_REFS (2).bib`. | đã làm |
+
+## I. Quyết định của NCS sau G4 (2026-11-04) — kiểm toán trên giấy khép lại
+
+| ID | Quyết định | Nhãn |
+|---|---|---|
+| D24 (Q-G4-1) | H4a kết luận **riêng cho từng kiểu** (ii), (iii); phát biểu phải ghi đúng kiểu đạt. Chỉ được viết "H4a đạt đầy đủ" khi **cả hai** kiểu đạt. Chặt ở phạm vi tuyên bố, không chặt ở thủ tục (giống Q15 của RQ3 — tài liệu RQ3 không có trong repo này, nên đối chiếu là theo lời NCS). | ràng buộc phát biểu |
+| D25 (Q-G4-2) | Một trần `B_pass` chung cho mọi nhánh, giá trị đặt sau P4d. Nếu B1 phải giảm số lần lặp để vào trần thì biến thể đó có **tên riêng** và báo cáo chi phí thực của từng nhánh. | nguyên tắc |
+| D26 (Q-G4-3) | Dòng HELD: nhánh chính = không xác minh trong lượt chạy, coi như loại; báo cáo tỷ lệ dòng sạch bị giữ oan. Biến thể: xác minh tiêu nhãn từ chính ngân sách `b`. **Không bao giờ cấp nhãn ngoài `b`.** | ràng buộc công bằng |
+| D27 (Q-G4-4) | F1 sạch của H4a = **macro-F1 tại `λ_t`**, như H3. | định nghĩa |
+| D28 (Q-G4-5) | Cho phép biến thể **HB2-R** (hook gỡ dòng + telemetry từng hàng), tách khỏi `LOCK_HB2`. Bắt buộc kiểm thử hồi quy: không có lệnh gỡ ⇒ đầu ra HB2-R **giống HB2 từng bit**. Xung đột với A4 của Mệnh đề 1 (RQ2) vẫn `OPEN`. | cho phép có điều kiện |
+| D29 | Thống kê chính = **Wilcoxon / Hodges–Lehmann theo ngày gốc**, thống nhất với RQ2, Q15 của RQ3 và mục sửa đề cương đã ghi; mô hình hỗn hợp chỉ làm phân tích độ nhạy. (**Khác chữ v14.3 Nội dung 1**, nơi mô hình hỗn hợp là kiểm định chính; v14.3 không sửa — xem `06` §4 O7.) | thay đổi tiền đăng ký, theo NCS |
+| D30 | P4a: "tổn hại đủ lớn" khi thỏa **cả hai**: (a) khoảng tin cậy của `ASR_excess` qua các ngày gốc loại trừ 0; (b) trung vị `ASR_excess` ≥ 2×SD giữa các seed. Lý do: các seed cùng ngày gốc không độc lập. | tiêu chí |
