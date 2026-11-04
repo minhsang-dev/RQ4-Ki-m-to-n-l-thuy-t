@@ -162,3 +162,10 @@ Ký hiệu: `F` = họ mục tiêu; Test/đánh giá = mẫu cố định phân 
 | H4a / H4b | NO CONCLUSION |
 | Mệnh đề 2 | PROOF NOT VERIFIED |
 | Đề cương | NO CHANGE NOW |
+
+---
+
+## 11. Cập nhật sau duyệt G1 (D8–D14, xem `01_REQUIREMENT_TRACE.md` §F)
+
+Q-G1-1 → U1 chính, U2 nhạy cảm (D8). Q-G1-2 → nhiễu trung thực chính = 0, một mức nhạy cảm (D9, PROPOSAL). Q-G1-3 → V_t, D_cal từ η·b của nguồn không gắn cờ; mở cho G2 (D10). Q-G1-4 → (iv) lật họ mục tiêu, δ HOLD (D11). Q-G1-5 → surrogate K1 chấp nhận, làm rõ ĐN5 (D12). Q-G1-6 → lưới chính ở chế độ A; chế độ B = cờ oan + (ii) phụ (D13). Q-G1-7 → K ∈ {5,10}, m theo D14 (PROPOSAL).
+Hệ quả: (iii)/(v) không còn `ATTACK_NOT_OPERATIONAL` (với điều kiện K1); (iv) vẫn chờ δ; ví dụ số dùng `K=5` (trong D14).

@@ -79,3 +79,17 @@ Nhãn: `ĐC` = ĐỀ CƯƠNG QUY ĐỊNH · `BC` = BẰNG CHỨNG ĐÃ KIỂM ·
 | D5 | Không sửa đề cương; chỉ chuẩn bị phương án | N-6 |
 | D6 | Giữ mở cho G2: V_t phụ thuộc tầng nguồn (vòng lặp nếu tầng nguồn hỏng) | N-5 còn mở |
 | D7 | Kiểm năm/nơi đăng bài Koh et al. ở G3 | — |
+
+## F. Quyết định của NCS sau G1 (2026-11-04)
+
+| ID | Quyết định | Nhãn |
+|---|---|---|
+| D8 (Q1) | Dòng của nguồn `UNCERTAIN`: **U1 là chính** (không tự động giữ; đi qua tầng dòng như thường); U2 báo cáo như nhạy cảm. Cơ sở: v14.3 "chưa xác định thay vì bị gắn cờ". | quyết định phân tích |
+| D9 (Q2) | Nhiễu nhãn nguồn trung thực: chính = 0; một mức nhiễu ngẫu nhiên đối xứng làm nhạy cảm, giá trị chốt trong prereg (lấy từ prereg DoP nếu có — **prereg DoP đang MISSING**). | PROPOSAL, chưa duyệt |
+| D10 (Q3) | `V_t`, `D_cal` lấy từ nhãn η·b dành riêng của K nguồn, **chỉ nguồn không bị gắn cờ** (Nội dung 3); không có tập chuyên viên độc lập riêng. Vòng lặp phụ thuộc giữ mở cho G2. | ĐC (Nội dung 3) + giữ mở |
+| D11 (Q4) | Kiểu (iv): lật dòng họ mục tiêu; tỷ lệ lật hằng ngày = ngưỡng phát hiện tầng nguồn trừ δ; δ HOLD đến khi có đặc tả DoP, khóa trong prereg. | quyết định phân tích |
+| D12 (Q5) | Surrogate cho (iii)/(v) chấp nhận ở mức K1 (đối thủ tự huấn luyện trên dữ liệu nó được thấy hợp lệ; không truy vấn, không trọng số của mô hình triển khai). Ghi là **làm rõ** Định nghĩa 5, không phải sửa đổi. | làm rõ |
+| D13 (Q6) | Lưới chính H4a/H4b ở chế độ A. Chế độ B: đo cờ oan chỉ-trung-thực + tấn công (ii) như phân tích phụ. | quyết định phân tích |
+| D14 (Q7) | **PROPOSAL**: K ∈ {5, 10}; m ∈ {1, 2} khi K=5 và {1, 2, 4} khi K=10; thêm đường cong điểm gãy m = 0..K−1. Giá trị cuối chốt sau P4b (số dòng/nguồn/ngày = b/K quyết định công suất DoP). | PROPOSAL, chưa duyệt |
+
+Ghi chú: D8 làm Mệnh đề 2 yếu đi ở chế độ B (xem `03_PROPOSITION_2_AUDIT.md` §8, Hệ quả 2′-b).
