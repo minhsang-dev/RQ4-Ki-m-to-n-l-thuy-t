@@ -106,7 +106,7 @@ Giảm `|V_t|` ít giúp (SL): chi phí chủ yếu ở mã hóa ngữ cảnh 20
 - **Câu hỏi:** tấn công (ii) (rồi (iii) với surrogate K1) có làm hại baseline S0 đủ để một "giảm 50%" có nghĩa không?
 - **Thiết kế:** cùng trace RQ3; clean | (i) ngẫu nhiên | (ii) | (iii); không phòng thủ; chế độ A; `K=5`, `m ∈ {1,2}` (D14, PROPOSAL); thêm phân rã kênh ngữ cảnh vs `λ_t` (§3).
 - **Chỉ số:** `ASR_raw`, `ASR_excess` (D1), macro-F1, Recall/FNR họ mục tiêu, tương quan hạng `Î_i` vs `I_i` (chỉ đánh giá).
-- **Điều kiện dừng/kết luận (D30):** "tổn hại đủ lớn" khi thỏa **cả hai**: (a) khoảng tin cậy (Hodges–Lehmann theo ngày gốc) của `ASR_excess(att, none)` loại trừ 0; (b) trung vị `ASR_excess` qua ngày gốc ≥ 2×SD giữa các seed. SD giữa các seed: SD của `ASR_excess` qua seed trong từng ngày gốc rồi gộp (căn bậc hai trung bình bình phương) — **ĐX chi tiết, cần NCS xác nhận**. Không thỏa ⇒ `HOLD_ASSUMPTION`: chưa dùng "50%" làm kết quả có nghĩa. Seed cùng ngày gốc không độc lập nên không được dùng để tăng cỡ mẫu cho (a). Chốt biên "tốt hơn RONI" (D22) **sau P4a, trước tiền đăng ký**.
+- **Điều kiện dừng/kết luận (D30):** "tổn hại đủ lớn" khi thỏa **cả hai**: (a) khoảng tin cậy (Hodges–Lehmann theo ngày gốc) của `ASR_excess(att, none)` loại trừ 0; (b) trung vị `ASR_excess` qua ngày gốc ≥ 2×SD giữa các seed. SD giữa các seed (D33, đã chốt): SD của `ASR_excess` qua seed trong từng ngày gốc, rồi gộp qua ngày gốc bằng căn bậc hai của trung bình bình phương. Điều kiện (a) dùng cùng quy tắc một phía theo hướng đăng ký (tổn hại > 0): đọc là cận dưới một phía của HL > 0 — **nhất quán với D34, nhờ NCS xác nhận cách đọc**. Không thỏa ⇒ `HOLD_ASSUMPTION`: chưa dùng "50%" làm kết quả có nghĩa. Seed cùng ngày gốc không độc lập nên không được dùng để tăng cỡ mẫu cho (a). Chốt biên "tốt hơn RONI" (D22) **sau P4a, trước tiền đăng ký**.
 - **Nhãn kết luận:** `ASSUMPTION FALSIFIED` / `INCONCLUSIVE` / `PROVISIONALLY SUPPORTED` (đều chỉ là DEV).
 
 ### P4b — DoP có phân biệt được nguồn bị chiếm (chế độ A và B)?
@@ -142,11 +142,26 @@ Giảm `|V_t|` ít giúp (SL): chi phí chủ yếu ở mã hóa ngữ cảnh 20
 | Nhánh | S0–S3, B1 (Nelson-protocol adaptation), B2, B3; B4 tùy chọn (D18) | ĐC; D18 |
 | Tuning | tối đa 12 cấu hình DEV, **bằng nhau mọi nhánh** kể cả S2, S3 (D20); thêm trần `B_pass` chung | D20; ĐX |
 | `I_i` | TabFM chính; LightGBM refit lá phụ (D21) | D21 |
-| Thống kê chính | **Wilcoxon signed-rank + ước lượng Hodges–Lehmann theo ngày gốc** (D29): gộp seed/kịch bản về **một giá trị mỗi ngày gốc** (trung vị) cho mỗi hiệu cặp; CI từ HL. Mô hình hỗn hợp (ngày gốc ngẫu nhiên, kịch bản lồng, bộ dữ liệu cố định) + bootstrap phân cấp chỉ **độ nhạy**. Công suất mô phỏng trước đăng ký; <0,8 ⇒ thêm ngày gốc, không nới biên. *Ghi chú số học (SL):* kiểm định Wilcoxon chính xác hai phía cần ít nhất **6 ngày gốc** mới có p<0,05 (p nhỏ nhất = 2/2ⁿ: n=5 ⇒ 0,0625; n=6 ⇒ 0,031) | D29 (khác chữ Nội dung 1 v14.3) |
+| Thống kê chính | **Wilcoxon signed-rank một phía (hướng đăng ký trước) + ước lượng Hodges–Lehmann theo ngày gốc** (D29, D32): gộp seed/kịch bản về **một giá trị mỗi ngày gốc** (trung vị) cho mỗi hiệu cặp; **quyết định theo từng ô, trung vị ΔF1 qua ngày gốc, không gộp các ô**; CI từ HL. **Khai báo độ lệch:** khác chữ v14.3 Nội dung 1 (mô hình hỗn hợp là kiểm định chính); nguồn của quyết định: mục 4 §5 `THESIS_AUDIT_LOG_RQ3_RQ4.md` (chưa có trong repo, D31). Mô hình hỗn hợp (ngày gốc ngẫu nhiên, kịch bản lồng, bộ dữ liệu cố định) + bootstrap phân cấp chỉ **độ nhạy**. Công suất mô phỏng trước đăng ký; <0,8 ⇒ thêm ngày gốc, không nới biên. *Cỡ mẫu (D34):* kiểm định một phía ⇒ p chính xác nhỏ nhất = 1/2ⁿ; cần `1/2ⁿ < α/m` (`m` = số kiểm định trong họ khai báo; bảng ở §6b) | D29, D32, D34 |
 | Chi phí | thời gian/CPU LightGBM; GPU-giờ TabFM mỗi nhánh; báo cáo tách chi phí nhãn và độ trễ | hồ sơ §6 |
 | `V_t`, `D_cal` | nhiễm theo D17; biến thể sạch oracle chỉ phụ (D19) | D17, D19 |
 | Kiểm soát | split-before-poisoning; Test nguyên vẹn; ngưỡng chỉ trên Validation/DEV; so cặp trên cùng trace; không suy luận độc lập từ seed cùng root | hồ sơ §6 |
 | Quy tắc quyết | `GO / HOLD / NO-GO` tính từ effect size cùng CI; ngưỡng số mới `TBD`, xin duyệt trước DEV | hồ sơ §6 |
+
+## 6b. Số ngày gốc tối thiểu (D34)
+
+Kiểm định Wilcoxon một phía chính xác: `p_min = 1/2ⁿ`. Điều kiện `1/2ⁿ < α/m`. Minh họa với `α = 0,05` (**α và `m` chưa được v14.3 hay hồ sơ ấn định cho RQ4**; số liệu dưới chỉ là phép tính):
+
+| m (số kiểm định trong họ) | n ngày gốc tối thiểu | p_min = 1/2ⁿ |
+|---|---|---|
+| 1 | 5 | 0.0312 |
+| 2 | 6 | 0.0156 |
+| 4 | 7 | 0.0078 |
+| 8 | 8 | 0.0039 |
+| 12 | 8 | 0.0039 |
+| 16 | 9 | 0.0020 |
+
+Hệ quả: nếu H4a xét (ii) và (iii) qua nhiều ô thì `m` lớn; ví dụ `m = 4` cần ≥7 ngày gốc (khớp lời NCS). Họ `m` phải khai báo trước cùng với danh sách ô; số ngày gốc của DEV RQ4 là ràng buộc cứng, và nếu không đủ thì chuyển `HOLD` (không đào thêm vòng DEV). Cùng quy tắc với tiền đăng ký RQ3 (G5 RQ3 đã gặp vấn đề này, theo NCS; tôi không có tài liệu đó).
 
 **Quy tắc GO/HOLD/NO-GO (hồ sơ §6, giữ nguyên nghĩa).**
 - GO: giả định được hỗ trợ sơ bộ và đo được trong nguồn lực; chỉ GO thiết kế tiếp, sau phê duyệt.
@@ -174,4 +189,4 @@ Giảm `|V_t|` ít giúp (SL): chi phí chủ yếu ở mã hóa ngữ cảnh 20
 - giá trị `B_pass` (sau P4d); biên "tốt hơn RONI" (D22); các `TBD` ở §6;
 - định nghĩa chi tiết "SD giữa các seed" cho D30 (ĐX ở §5 P4a);
 - xung đột A4 (RQ2) cho hồi tố;
-- danh sách root DEV (cần ≥6 ngày gốc độc lập để Wilcoxon chính xác đạt p<0,05).
+- danh sách root DEV (số ngày gốc theo §6b: `n > log₂(m/α)`, tức ≥5 khi `m=1`, ≥7 khi `m=4` với α=0,05).

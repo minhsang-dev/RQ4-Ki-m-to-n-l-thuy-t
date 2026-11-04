@@ -124,3 +124,12 @@ Ghi chú: D8 làm Mệnh đề 2 yếu đi ở chế độ B (xem `03_PROPOSITIO
 | D28 (Q-G4-5) | Cho phép biến thể **HB2-R** (hook gỡ dòng + telemetry từng hàng), tách khỏi `LOCK_HB2`. Bắt buộc kiểm thử hồi quy: không có lệnh gỡ ⇒ đầu ra HB2-R **giống HB2 từng bit**. Xung đột với A4 của Mệnh đề 1 (RQ2) vẫn `OPEN`. | cho phép có điều kiện |
 | D29 | Thống kê chính = **Wilcoxon / Hodges–Lehmann theo ngày gốc**, thống nhất với RQ2, Q15 của RQ3 và mục sửa đề cương đã ghi; mô hình hỗn hợp chỉ làm phân tích độ nhạy. (**Khác chữ v14.3 Nội dung 1**, nơi mô hình hỗn hợp là kiểm định chính; v14.3 không sửa — xem `06` §4 O7.) | thay đổi tiền đăng ký, theo NCS |
 | D30 | P4a: "tổn hại đủ lớn" khi thỏa **cả hai**: (a) khoảng tin cậy của `ASR_excess` qua các ngày gốc loại trừ 0; (b) trung vị `ASR_excess` ≥ 2×SD giữa các seed. Lý do: các seed cùng ngày gốc không độc lập. | tiêu chí |
+
+## J. Xác nhận của NCS sau khép G4 (2026-11-04)
+
+| ID | Nội dung | Nhãn |
+|---|---|---|
+| D31 | Mục sửa đề cương Wilcoxon/HL theo ngày gốc **có thật**: mục 4 của §5 trong `THESIS_AUDIT_LOG_RQ3_RQ4.md` ("Statistics of Nội dung 1: Wilcoxon/HL by root day instead of mixed model"). Tệp **chưa có trong repo**; NCS sẽ đưa vào `sources/` (đến lúc đó: `MENTIONED_ONLY`, chưa tôi đọc). D29 phải được **khai báo là độ lệch so với chữ v14.3 Nội dung 1** trong tiền đăng ký; O7 vẫn là phương án sửa đề cương **chưa duyệt**. | xác nhận nguồn gốc |
+| D32 | Q15 của RQ3 (cũng ở mục 4 cùng tệp): **quyết định theo từng ô; trung vị ΔF1 qua các ngày gốc; Wilcoxon một phía; không gộp các ô.** RQ4 dùng chung quy tắc. | quy tắc chung hai RQ |
+| D33 | "SD giữa các seed" (D30) = SD của `ASR_excess` qua seed trong từng ngày gốc, rồi gộp qua ngày gốc bằng căn bậc hai của trung bình bình phương. | định nghĩa chốt |
+| D34 | Kiểm định **một phía** theo hướng đăng ký trước ⇒ p chính xác nhỏ nhất = 1/2ⁿ. Số ngày gốc `n` phải thỏa `1/2ⁿ < α/m`, `m` = số kiểm định trong họ đã khai báo. Nếu H4a xét (ii) và (iii) qua nhiều ô thì cần hơn 6 ngày gốc (ví dụ `m = 4` cần ≥7). Tiền đăng ký của RQ3 và RQ4 dùng chung quy tắc. | quy tắc cỡ mẫu |

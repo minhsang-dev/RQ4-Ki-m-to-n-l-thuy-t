@@ -63,6 +63,7 @@ Trạng thái: `VERIFIED` (đã mở và đọc) / `MENTIONED_ONLY` (được n�
 | RQ3 DEV interface/trace | **MISSING** (đúng dự kiến: chưa có) | P4a–c = HOLD; G4 chỉ đặc tả |
 | Bằng chứng DoP **NO-GO về novelty** (2026-10-24/25) | **MENTIONED_ONLY** (NCS-STATED trong tin nhắn) | Ghi vào requirement trace; novelty RQ4 không dựa tầng nguồn |
 | RQ2 policy khóa = **HB2** (CBRS_FAMILY + hard-benign bin); ThreeBin = `CLOSED_AT_DEV` | VERIFIED qua S9 §1, §8–9 và NCS-STATED | Hồ sơ S1 và v14.3 vẫn nói "ThreeBin". Không đổi H2 trong v14.3. Interface RQ4→RQ2 phải nói theo HB2 |
+| `THESIS_AUDIT_LOG_RQ3_RQ4.md` (mục 4 §5: Wilcoxon/HL theo ngày gốc; quy tắc Q15 của RQ3) | **MENTIONED_ONLY** (NCS xác nhận 2026-11-04; sẽ đưa vào `sources/`; chưa đọc) | D29, D32 dựa trên lời NCS đến khi đọc được tệp |
 | Prior art cũ (S5–S8) | READ, `SECONDARY` | Mở rộng, không làm lại (theo chỉ dẫn NCS) |
 
 ## 5. Danh mục thiếu / câu hỏi cho NCS (chỉ những điểm không suy ra được từ hồ sơ)

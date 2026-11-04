@@ -46,7 +46,7 @@ DECISION: `RQ4_PAPER_AUDIT = KHÉP LẠI (đã duyệt)`; `RQ4_EXPERIMENT = HOLD
 | O4 | Ghi surrogate K1 như làm rõ ĐN5 (đối thủ không truy vấn mô hình triển khai) | operational | thu hẹp đối thủ |
 | O5 | Nêu "kiểu ii–iii: cả hai" và biên "tốt hơn RONI" sau P4a | kiểm định được | lưới nặng hơn |
 | O6 | Nhắc HB2 thay ThreeBin tại H2/Nội dung (liên quan RQ2) | nhất quán | v14.3 đang khóa; ngoài phạm vi RQ4 |
-| O7 | Đổi kiểm định chính của Nội dung 1 từ mô hình hỗn hợp sang Wilcoxon/HL theo ngày gốc (D29) | thống nhất với RQ2/RQ3, hợp với đơn vị độc lập | cần ≥6 ngày gốc cho p<0,05 chính xác; NCS cho biết đã có trong mục sửa đề cương — tôi không thấy mục đó nên chưa xác minh |
+| O7 | Đổi kiểm định chính của Nội dung 1 từ mô hình hỗn hợp sang Wilcoxon/HL theo ngày gốc (D29) | thống nhất với RQ2/RQ3, hợp với đơn vị độc lập | cần `n > log₂(m/α)` ngày gốc (kiểm định một phía; `m=4`, α=0,05 ⇒ ≥7); mục sửa đề cương có thật theo NCS (mục 4 §5 `THESIS_AUDIT_LOG_RQ3_RQ4.md`, tệp sẽ vào `sources/`; tôi chưa đọc); D29 phải khai báo là độ lệch so với chữ v14.3 trong tiền đăng ký |
 Lưu ý N-6: RQ2 DECISION_LOG ghi v14.3 không sửa được trong 6 tháng; quyết định có xem xét O1–O6 hay không thuộc NCS.
 
 ## 5. Bước tiếp theo (không chạy trong nhiệm vụ này)
@@ -57,6 +57,6 @@ Lưu ý N-6: RQ2 DECISION_LOG ghi v14.3 không sửa được trong 6 tháng; qu
 
 ## 6. Còn mở
 
-Q-G4-1…5 đã giải quyết (D24–D28). Còn: giá trị `B_pass` (sau P4d); biên "tốt hơn RONI" (sau P4a); định nghĩa chi tiết "SD giữa các seed" (D30); số ngày gốc DEV (≥6); xung đột A4 (RQ2) cho hồi tố; các `TBD` ở `05` §6. **Hệ quả D26 cần lưu ý:** cờ bền + HELD bị loại ⇒ một nguồn trung thực bị cờ oan mất toàn bộ dữ liệu đến hết lượt chạy; tỷ lệ dòng sạch bị giữ oan phải là chỉ số báo cáo chính.
+Q-G4-1…5 đã giải quyết (D24–D28). Còn: giá trị `B_pass` (sau P4d); biên "tốt hơn RONI" (sau P4a); định nghĩa chi tiết "SD giữa các seed" (D30); số ngày gốc DEV (theo `05` §6b, phụ thuộc số kiểm định `m`); xung đột A4 (RQ2) cho hồi tố; các `TBD` ở `05` §6. **Hệ quả D26 cần lưu ý:** cờ bền + HELD bị loại ⇒ một nguồn trung thực bị cờ oan mất toàn bộ dữ liệu đến hết lượt chạy; tỷ lệ dòng sạch bị giữ oan phải là chỉ số báo cáo chính.
 
 **Giới hạn:** không có kết quả thực nghiệm; mọi số chi phí là ngoại suy; tìm kiếm tài liệu chỉ qua web chuẩn; 32+ công trình prior art vẫn `SECONDARY`.
