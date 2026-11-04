@@ -175,17 +175,18 @@ Hệ quả: nếu H4a xét (ii) và (iii) qua nhiều ô thì `m` lớn; ví d�
 | T4 | H4b: giảm so với không phòng thủ | `h_r = A_r(none) − A_r(def)` | `h_r > 0` |
 | T5 | H4b: tốt hơn RONI | `k_r = A_r(B1) − A_r(def)` | `k_r > 0` (không có biên: v14.3 và NCS không nêu; thêm biên là ĐX riêng) |
 
-**Quy tắc đạt.** Ô × kiểu (ii) hoặc (iii) **đạt H4a** khi T1, T2, T3 **cùng** đạt. Ô × kiểu (iv) hoặc (v) **đạt H4b** khi T4 và T5 cùng đạt (H4b không kèm điều kiện F1 theo chữ v14.3 — H4b chỉ nêu giảm ASR so với S0 và RONI; thêm T3 là ĐX riêng nếu NCS muốn). Phát biểu kết luận ghi đúng ô và kiểu đạt; "H4a đạt đầy đủ" chỉ khi cả (ii) và (iii) đạt (D24). Trung vị `RR_r` chỉ báo cáo làm **ước lượng điểm**, không dùng để kiểm định; HL cho hiệu mỗi kiểm định để báo cáo kích thước hiệu ứng.
+**Quy tắc đạt.** Ô × kiểu (ii) hoặc (iii) **đạt H4a** khi T1, T2, T3 **cùng** đạt. Ô × kiểu (iv) hoặc (v) **đạt H4b** khi T4 và T5 cùng đạt (H4b không có điều kiện F1 theo chữ v14.3; F1 sạch chỉ báo cáo — D38). Phát biểu kết luận ghi đúng ô và kiểu đạt; "H4a đạt đầy đủ" chỉ khi cả (ii) và (iii) đạt (D24). Trung vị `RR_r` chỉ báo cáo làm **ước lượng điểm**, không dùng để kiểm định; HL cho hiệu mỗi kiểm định để báo cáo kích thước hiệu ứng.
 
 **Lý do (NCS):** Wilcoxon trên hiệu `A(none) − A(def)` chỉ cho biết có giảm, không kiểm được ≥50%; `RR_r` không ổn định khi mẫu số nhỏ và vô định khi `A_r(none) ≤ 0`; `d_r` luôn xác định.
 
-**Ghi chú của tôi (SL, để NCS cân nhắc, chưa quyết):**
-1. *Ngày gốc có `A_r(none) ≤ 0`:* `d_r` vẫn xác định nhưng gần như chắc ≤ 0 (chỉ dương nếu `A_r(def)` âm hơn) và kéo T1 xuống; điều đó đúng bản chất (không có tổn hại để giảm) nhưng làm P4a quan trọng hơn. Nên báo số ngày gốc loại theo điều kiện này.
-2. *Hiệu bằng 0:* Wilcoxon bỏ các hiệu bằng 0, làm `n` hiệu dụng nhỏ hơn số ngày gốc; quy tắc `1/2ⁿ < α/m` (D34) phải áp lên `n` hiệu dụng. Ngày gốc tới ngưỡng ceiling/floor (như RQ2 `AP=1`) dễ cho hiệu 0.
-3. *T3 (non-inferiority):* kiểm Wilcoxon trên biến dịch `g_r` diễn giải là dịch trung vị chỉ khi hiệu `F1(none) − F1(def)` đối xứng quanh trung vị của nó; nên đăng ký kiểm tra độ đối xứng hoặc báo HL kèm.
-4. *Phép giao (T1∧T2∧T3):* mỗi ô × kiểu đạt khi cả ba kiểm định đạt ở mức `α` (giao các kiểm định không cần hiệu chỉnh thêm trong ô — kiểm định giao–hợp). Với họ xác nhận `m` ô × kiểu, quy tắc `1/2ⁿ < α/m` (D34) đếm `m` là số **ô × kiểu**, không phải số kiểm định (3 hay 2 mỗi ô). NCS xác nhận cách đếm `m`.
-5. *B1 giảm lặp (D25)* đổi nghĩa T2 (so với "B1-R" chứ không phải B1); báo cáo T2 theo tên nhánh thực dùng.
-6. *Phạm vi:* ở DEV (P4a–P4d) dùng p chưa hiệu chỉnh làm tiêu chí, p-Holm mô tả (D36); ở xác nhận, họ khai báo trước.
+**Sáu ghi chú — NCS xác nhận 2026-11-04 (D38); ghi vào tiền đăng ký:**
+1. *Ngày gốc có `A_r(none) ≤ 0`:* **giữ nguyên quy tắc.** Không có tổn hại thì không có gì để giảm; ngày đó kéo T1 xuống là đúng bản chất. Đây là lý do P4a chạy trước. Báo số ngày gốc thuộc loại này.
+2. *Hiệu bằng 0:* dùng **Wilcoxon chính xác, bỏ các hiệu bằng 0**; quy tắc `1/2ⁿ < α/m` áp lên **`n` hiệu dụng sau khi bỏ** (khai báo trong tiền đăng ký; số ngày gốc kế hoạch phải dự phòng ngày hiệu bằng 0, ví dụ ngày chạm trần).
+3. *T3:* báo cáo ước lượng **HL**; thêm **sign test** làm phân tích độ nhạy (không cần giả định đối xứng). Sign test cũng có `p_min = 1/2ⁿ` trên `n` hiệu dụng.
+4. *Đếm `m`:* theo **ô × kiểu tấn công**. Một ô chỉ đạt khi **mọi kiểm định trong ô đều đạt ở mức `α`** (giao–hợp, intersection–union), nên không hiệu chỉnh thêm cho số kiểm định trong ô. **H4a và H4b là hai họ kiểm định riêng** (`m` đếm riêng).
+5. *T2 với B1 giảm lặp:* biến thể phải có tên riêng (D25); T2 báo theo tên nhánh thực dùng.
+6. *H4b:* chỉ gồm **T4 và T5**, đúng chữ v14.3. F1 sạch **vẫn báo cáo nhưng không kiểm định**.
+7. *Phạm vi (D36):* ở DEV (P4a–P4d) p chưa hiệu chỉnh làm tiêu chí, p-Holm mô tả; ở xác nhận, họ khai báo trước.
 
 **Quy tắc GO/HOLD/NO-GO (hồ sơ §6, giữ nguyên nghĩa).**
 - GO: giả định được hỗ trợ sơ bộ và đo được trong nguồn lực; chỉ GO thiết kế tiếp, sau phê duyệt.
