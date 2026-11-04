@@ -122,7 +122,7 @@ Bốn khía cạnh tách biệt, theo hồ sơ §7.6.
 |---|---|
 | `koh2022` | `year = {2021}`; nên đổi khóa thành `koh2021`; journal: *Machine Learning* 2021 (VERIFIED). |
 | `priorpoison2026`, `lan2025`, … | không đổi trong G3 |
-| thêm | khối BibTeX bên dưới |
+| thêm | khối BibTeX bên dưới — **đã áp dụng vào `RQ4_REFS (2).bib` (D23)** |
 
 ```bibtex
 @misc{mahloujifar2018multiparty,
