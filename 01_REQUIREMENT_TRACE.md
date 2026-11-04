@@ -101,3 +101,14 @@ Ghi chú: D8 làm Mệnh đề 2 yếu đi ở chế độ B (xem `03_PROPOSITIO
 | D15 | Cách đọc `f` = **R1** (tỷ lệ lật trên nhãn của nguồn trong ngày — cái audit quan sát). Không dùng R2 để cứu Mệnh đề 2. Trạng thái: Mệnh đề 2 như viết = `ASSUMPTION GAP / COUNTEREXAMPLE`; 2′ = `CANDIDATE`, cần phê duyệt đề xuất. | quyết định phân tích |
 | D16 | Cờ nguồn: **PROPOSAL** chính = bền đến hết lượt chạy hoặc đến khi được xác minh, kèm **giữ hồi tố** các dòng của nguồn đó đang trong ngữ cảnh, `V_t`, `D_cal`; không-hồi-tố là nhạy cảm. Xung đột với giả định A4 của Mệnh đề 1 (RQ2) — loại bỏ hồi tố — T2 đã đánh dấu `OPEN`. | PROPOSAL, chưa duyệt; xung đột RQ2 còn mở |
 | D17 | Nhãn η·b dành riêng: bảo thủ. Dòng dành riêng đi tới cùng các nguồn, đối thủ không phân biệt được, nên nguồn bị chiếm lật với cùng tỷ lệ. Giữ nguy cơ đầu độc `D_cal` (lạm phát `λ_t`) như mối đe dọa có tên trong các probe G4. | quyết định phân tích |
+
+## H. Quyết định của NCS sau G3 (2026-11-04)
+
+| ID | Quyết định | Nhãn |
+|---|---|---|
+| D18 | B1 = "RONI (Nelson-protocol adaptation)"; ART chỉ tham chiếu. Dùng ART nguyên trạng thì gọi "ART-RONI" và nêu đủ 5 khác biệt. | quyết định phân tích |
+| D19 | Biến thể "V_t sạch oracle": chỉ trong báo cáo phụ; **không** dùng trong bất kỳ quyết định H4a/H4b. | ràng buộc |
+| D20 | Tuning tối đa 12 cấu hình trên DEV, **bằng nhau cho mọi nhánh** kể cả S2, S3. | ràng buộc công bằng |
+| D21 | `I_i` nhánh chính trên TabFM. LightGBM: xấp xỉ refit lá (giữ cấu trúc cây), chỉ nhánh phụ, ghi rõ là xấp xỉ. | quyết định phân tích |
+| D22 | Biên "tốt hơn RONI" của H4a chưa chốt số; chốt sau P4a, trước tiền đăng ký, kèm lý do. | HOLD |
+| D23 | Thư mục tham khảo: `koh2022`→`koh2021` (Machine Learning 2021), thêm 2 mục; mục patent ghi rõ là patent. **Đã áp dụng** vào `RQ4_REFS (2).bib`. | đã làm |
