@@ -57,7 +57,7 @@ nguồn bị cờ sau này: IN_CONTEXT/ACCEPT cũ -> HELD (hồi tố, PROPOSAL 
 
 **Ghi chú thiết kế.**
 - *Trục thời gian thứ hai:* phân bố dòng mà RQ3 hỏi nhãn quyết định tập nhãn RQ4 có thể kiểm toán (ví dụ RQ3 chọn theo bất định ⇒ lô nghiêng về vùng gần biên; audit ngang hàng vẫn hoán đổi được vì gán nguồn xảy ra *sau* chọn, D4). Nhưng RQ4 không dùng quyết định tương lai của RQ3 (R-T3).
-- `τ = 7`: audit ngày `t` xử lý dòng chọn ở `t−7`; số dòng/nguồn/ngày vẫn ≈ `(1−η)b/K` ở trạng thái ổn định.
+- `τ = 7`: audit ngày `t` xử lý dòng chọn ở `t−7`; số nhãn/nguồn/ngày mà kiểm toán thấy vẫn ≈ `b/K` ở trạng thái ổn định (E1).
 - *Dòng HELD (D26):* nhánh chính coi HELD là bị loại cho tới hết lượt chạy; báo cáo **tỷ lệ dòng sạch bị giữ oan** (kể cả toàn bộ dòng sạch của nguồn trung thực bị cờ oan, vì cờ bền — D16). Biến thể 'verify-b': mỗi lần xác minh trừ vào `b` (chia sẻ với chọn mẫu RQ3), nên so với S0 phải báo cả hai thiết kế ghép cặp (S0 giữ nguyên `b` cho chọn mẫu / S0 nhận phần nhãn được giải phóng). **Không có nhãn ngoài `b`.**
 - *Hồi tố (D16):* khi nguồn `j` bị cờ ở ngày `t`: chuyển dòng của `j` trong `C_{t−1}` (và trong `V_t`, `D_cal`) sang HELD; tính lại `V_t`, `D_cal`, `λ_t`. **Xung đột** với giả định A4 của Mệnh đề 1 (RQ2, loại bỏ hồi tố): giữ `OPEN` theo T2; không đổi RQ2. HB2 chỉ nhận dòng ACCEPT nên phải hỗ trợ "gỡ dòng khỏi ngữ cảnh" — cho phép qua biến thể **HB2-R** (D28): hook gỡ dòng + telemetry từng hàng, tách khỏi `LOCK_HB2`; kiểm thử hồi quy bắt buộc (không lệnh gỡ ⇒ đầu ra giống HB2 từng bit; telemetry không được tiêu thụ RNG hay đổi thứ tự thao tác, nếu không bit-parity vỡ — SL). Xung đột A4 (RQ2) vẫn `OPEN`.
 - *Chọn của RQ3 và `g(x)`:* theo D3, ngữ cảnh RQ3 dùng chỉ chứa dòng đã lọc. Bước (6) dùng `C_t` đã qua (5).
@@ -106,12 +106,12 @@ Giảm `|V_t|` ít giúp (SL): chi phí chủ yếu ở mã hóa ngữ cảnh 20
 - **Câu hỏi:** tấn công (ii) (rồi (iii) với surrogate K1) có làm hại baseline S0 đủ để một "giảm 50%" có nghĩa không?
 - **Thiết kế:** cùng trace RQ3; clean | (i) ngẫu nhiên | (ii) | (iii); không phòng thủ; chế độ A; `K=5`, `m ∈ {1,2}` (D14, PROPOSAL); thêm phân rã kênh ngữ cảnh vs `λ_t` (§3).
 - **Chỉ số:** `ASR_raw`, `ASR_excess` (D1), macro-F1, Recall/FNR họ mục tiêu, tương quan hạng `Î_i` vs `I_i` (chỉ đánh giá).
-- **Điều kiện dừng/kết luận (D30):** "tổn hại đủ lớn" khi thỏa **cả hai**: (a) khoảng tin cậy (Hodges–Lehmann theo ngày gốc) của `ASR_excess(att, none)` loại trừ 0; (b) trung vị `ASR_excess` qua ngày gốc ≥ 2×SD giữa các seed. SD giữa các seed (D33, đã chốt): SD của `ASR_excess` qua seed trong từng ngày gốc, rồi gộp qua ngày gốc bằng căn bậc hai của trung bình bình phương. Điều kiện (a) dùng cùng quy tắc một phía theo hướng đăng ký (tổn hại > 0): đọc là cận dưới một phía của HL > 0 — **nhất quán với D34, nhờ NCS xác nhận cách đọc**. Không thỏa ⇒ `HOLD_ASSUMPTION`: chưa dùng "50%" làm kết quả có nghĩa. Seed cùng ngày gốc không độc lập nên không được dùng để tăng cỡ mẫu cho (a). Chốt biên "tốt hơn RONI" (D22) **sau P4a, trước tiền đăng ký**.
+- **Điều kiện dừng/kết luận (D30):** "tổn hại đủ lớn" khi thỏa **cả hai**: (a) **cận dưới một phía mức `1−α` của khoảng tin cậy Hodges–Lehmann** của `ASR_excess(att, none)` qua ngày gốc **> 0** (NCS xác nhận 2026-11-04; không cần CI hai phía); (b) trung vị `ASR_excess` qua ngày gốc ≥ 2×SD giữa các seed. SD giữa các seed (D33, đã chốt): SD của `ASR_excess` qua seed trong từng ngày gốc, rồi gộp qua ngày gốc bằng căn bậc hai của trung bình bình phương. Điều kiện (a) dùng cùng quy tắc một phía theo hướng đăng ký (tổn hại > 0): đọc là cận dưới một phía của HL > 0 — **nhất quán với D34, nhờ NCS xác nhận cách đọc**. Không thỏa ⇒ `HOLD_ASSUMPTION`: chưa dùng "50%" làm kết quả có nghĩa. Seed cùng ngày gốc không độc lập nên không được dùng để tăng cỡ mẫu cho (a). Chốt biên "tốt hơn RONI" (D22) **sau P4a, trước tiền đăng ký**.
 - **Nhãn kết luận:** `ASSUMPTION FALSIFIED` / `INCONCLUSIVE` / `PROVISIONALLY SUPPORTED` (đều chỉ là DEV).
 
 ### P4b — DoP có phân biệt được nguồn bị chiếm (chế độ A và B)?
 - **Câu hỏi:** TPR nguồn độc, FPR nguồn trung thực, tỷ lệ `UNCERTAIN`, độ phủ; công suất theo cỡ lô.
-- **Lưới cỡ lô** `n=(1−η)b/K` (η=0,2): `b=100`: 16 (K=5), 8 (K=10); `b=300`: 48, 24; `b=1000`: 160, 80.
+- **Lưới cỡ lô** — **[ĐÍNH CHÍNH E1]** kiểm toán thấy `n=b/K` (gồm dòng dành riêng, D14/D17): `b=100`: 20 (K=5), 10 (K=10); `b=300`: 60, 30; `b=1000`: 200, 100. Phần ứng viên vào ngữ cảnh `(1−η)b/K`: 16/8, 48/24, 160/80 (η=0,2) — bảng cũ. Cần NCS xác nhận kiểm toán gồm dòng dành riêng.
 - **Quyết định phụ:** chốt `K`, `m` cuối (D14); liên hệ `f*`, `β` với công suất (M2 của 2′) — cần **đặc tả DoP (MISSING)**; không có ⇒ P4b chỉ chạy được dạng "hộp đen".
 - **Điều kiện dừng:** nếu chế độ B không nhận dạng ⇒ `UNCERTAIN` là kết quả hợp lệ; **không** ép gắn cờ (hồ sơ §6). Báo cáo U1 (chính) và U2 (nhạy cảm) (D8).
 
@@ -135,7 +135,7 @@ Giảm `|V_t|` ít giúp (SL): chi phí chủ yếu ở mã hóa ngữ cảnh 20
 | Tấn công | lưới chính (ii)–(v), chế độ A; điểm gãy (i),(vi); chế độ B: cờ oan + (ii) phụ | ĐC; D13 |
 | Đối thủ | K0/K1 (surrogate), không K2; (iv): lật họ mục tiêu, tỷ lệ = ngưỡng tầng nguồn − δ; δ `TBD` sau khi có đặc tả DoP | D11, D12 |
 | ASR | `ASR_raw`, `ASR_excess` (D1); `RR = 1 − ASR_excess(att,def)/ASR_excess(att,none)`; chẩn đoán `ASR_excess_matched` | D1 (ĐX) |
-| Estimand H4a | `RR ≥ 0,5` trên `ASR_excess`; tốt hơn RONI: chênh `ASR_excess` ≥ biên `TBD` + CI; `ΔF1_clean ≤ ε₄ = 0,01` với F1 = **macro-F1 tại `λ_t`** (D27) | ĐC (50%, ε₄); biên: D22 |
+| Estimand H4a (theo mẫu Q15 của RQ3, ĐX cần NCS xác nhận) | mỗi ô, mỗi kiểu (ii)/(iii): `RR_r` mỗi ngày gốc `r`; ô được ủng hộ nếu **trung vị `RR_r` ≥ 0,5** và Wilcoxon một phía trên hiệu cặp `ASR_excess(none) − ASR_excess(def)` theo ngày gốc cho p < α (DEV: p chưa hiệu chỉnh); không gộp ô. `RR ≥ 0,5` trên `ASR_excess`; tốt hơn RONI: chênh `ASR_excess` ≥ biên `TBD` + CI; `ΔF1_clean ≤ ε₄ = 0,01` với F1 = **macro-F1 tại `λ_t`** (D27) | ĐC (50%, ε₄); biên: D22 |
 | Estimand H4b | `ASR_excess` giảm so với S0 và B1, CI loại trừ 0; **không** có ngưỡng 50% | ĐC |
 | Báo cáo riêng | H4a, H4b độc lập kết luận | ĐC |
 | Kiểu (ii)–(iii) | **Kết luận H4a riêng cho từng kiểu** (D24): "H4a(ii) đạt/không đạt", "H4a(iii) đạt/không đạt", mỗi kiểu có RR, so RONI, ΔF1. Chỉ được viết "H4a đạt đầy đủ" khi cả hai đạt; nếu chỉ một đạt, viết đúng kiểu đó | D24 |
@@ -161,7 +161,7 @@ Kiểm định Wilcoxon một phía chính xác: `p_min = 1/2ⁿ`. Điều kiệ
 | 12 | 8 | 0.0039 |
 | 16 | 9 | 0.0020 |
 
-Hệ quả: nếu H4a xét (ii) và (iii) qua nhiều ô thì `m` lớn; ví dụ `m = 4` cần ≥7 ngày gốc (khớp lời NCS). Họ `m` phải khai báo trước cùng với danh sách ô; số ngày gốc của DEV RQ4 là ràng buộc cứng, và nếu không đủ thì chuyển `HOLD` (không đào thêm vòng DEV). Cùng quy tắc với tiền đăng ký RQ3 (G5 RQ3 đã gặp vấn đề này, theo NCS; tôi không có tài liệu đó).
+Hệ quả: nếu H4a xét (ii) và (iii) qua nhiều ô thì `m` lớn; ví dụ `m = 4` cần ≥7 ngày gốc (khớp lời NCS). Họ `m` phải khai báo trước cùng với danh sách ô; **Phạm vi (đính chính theo NCS và `THESIS_AUDIT_LOG` §2 cuối):** quy tắc `1/2ⁿ < α/m` chỉ ràng buộc **họ kiểm định xác nhận** đã khai báo; thiếu ngày gốc ở đó ⇒ `HOLD` cho nghiên cứu xác nhận (không đào thêm vòng DEV). Các probe DEV P4a–P4d dùng **p chưa hiệu chỉnh** làm tiêu chí và chỉ báo p-Holm để mô tả (như RQ3 G4); thiếu ngày gốc ở DEV **không** tự dẫn tới HOLD. Họ xác nhận: Holm trên một họ chính nhỏ khai báo trước, hoặc đủ ngày gốc (RQ3 chọn phương án họ chính `m ≤ 3` ô, sau P3a). Cùng quy tắc với tiền đăng ký RQ3.
 
 **Quy tắc GO/HOLD/NO-GO (hồ sơ §6, giữ nguyên nghĩa).**
 - GO: giả định được hỗ trợ sơ bộ và đo được trong nguồn lực; chỉ GO thiết kế tiếp, sau phê duyệt.

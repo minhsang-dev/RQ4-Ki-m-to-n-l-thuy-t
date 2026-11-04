@@ -46,7 +46,7 @@ DECISION: `RQ4_PAPER_AUDIT = KHÉP LẠI (đã duyệt)`; `RQ4_EXPERIMENT = HOLD
 | O4 | Ghi surrogate K1 như làm rõ ĐN5 (đối thủ không truy vấn mô hình triển khai) | operational | thu hẹp đối thủ |
 | O5 | Nêu "kiểu ii–iii: cả hai" và biên "tốt hơn RONI" sau P4a | kiểm định được | lưới nặng hơn |
 | O6 | Nhắc HB2 thay ThreeBin tại H2/Nội dung (liên quan RQ2) | nhất quán | v14.3 đang khóa; ngoài phạm vi RQ4 |
-| O7 | Đổi kiểm định chính của Nội dung 1 từ mô hình hỗn hợp sang Wilcoxon/HL theo ngày gốc (D29) | thống nhất với RQ2/RQ3, hợp với đơn vị độc lập | cần `n > log₂(m/α)` ngày gốc (kiểm định một phía; `m=4`, α=0,05 ⇒ ≥7); mục sửa đề cương có thật theo NCS (mục 4 §5 `THESIS_AUDIT_LOG_RQ3_RQ4.md`, tệp sẽ vào `sources/`; tôi chưa đọc); D29 phải khai báo là độ lệch so với chữ v14.3 trong tiền đăng ký |
+| O7 | Đổi kiểm định chính của Nội dung 1 từ mô hình hỗn hợp sang Wilcoxon/HL theo ngày gốc (D29) | thống nhất với RQ2/RQ3, hợp với đơn vị độc lập | cần `n > log₂(m/α)` ngày gốc (kiểm định một phía; `m=4`, α=0,05 ⇒ ≥7); mục sửa đề cương **VERIFIED** (mục 4 §5 `THESIS_AUDIT_LOG_RQ3_RQ4.md`, đã đọc; tệp sẽ vào `sources/`); D29 phải khai báo là độ lệch so với chữ v14.3 trong tiền đăng ký |
 Lưu ý N-6: RQ2 DECISION_LOG ghi v14.3 không sửa được trong 6 tháng; quyết định có xem xét O1–O6 hay không thuộc NCS.
 
 ## 5. Bước tiếp theo (không chạy trong nhiệm vụ này)

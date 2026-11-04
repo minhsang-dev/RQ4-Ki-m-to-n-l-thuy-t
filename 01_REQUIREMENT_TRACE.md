@@ -129,7 +129,17 @@ Ghi chú: D8 làm Mệnh đề 2 yếu đi ở chế độ B (xem `03_PROPOSITIO
 
 | ID | Nội dung | Nhãn |
 |---|---|---|
-| D31 | Mục sửa đề cương Wilcoxon/HL theo ngày gốc **có thật**: mục 4 của §5 trong `THESIS_AUDIT_LOG_RQ3_RQ4.md` ("Statistics of Nội dung 1: Wilcoxon/HL by root day instead of mixed model"). Tệp **chưa có trong repo**; NCS sẽ đưa vào `sources/` (đến lúc đó: `MENTIONED_ONLY`, chưa tôi đọc). D29 phải được **khai báo là độ lệch so với chữ v14.3 Nội dung 1** trong tiền đăng ký; O7 vẫn là phương án sửa đề cương **chưa duyệt**. | xác nhận nguồn gốc |
-| D32 | Q15 của RQ3 (cũng ở mục 4 cùng tệp): **quyết định theo từng ô; trung vị ΔF1 qua các ngày gốc; Wilcoxon một phía; không gộp các ô.** RQ4 dùng chung quy tắc. | quy tắc chung hai RQ |
+| D31 | **VERIFIED** (đã đọc `THESIS_AUDIT_LOG_RQ3_RQ4_1.md`, sha256 `49fd799f…`, §5 mục 4: "Statistics of Nội dung 1: Wilcoxon/HL by root day instead of mixed model"). Mục sửa đề cương Wilcoxon/HL theo ngày gốc **có thật**: mục 4 của §5 trong `THESIS_AUDIT_LOG_RQ3_RQ4.md` ("Statistics of Nội dung 1: Wilcoxon/HL by root day instead of mixed model"). Tệp **chưa có trong repo**; NCS sẽ đưa vào `sources/` (đến lúc đó: `MENTIONED_ONLY`, chưa tôi đọc). D29 phải được **khai báo là độ lệch so với chữ v14.3 Nội dung 1** trong tiền đăng ký; O7 vẫn là phương án sửa đề cương **chưa duyệt**. | xác nhận nguồn gốc |
+| D32 | **VERIFIED CÓ GHI CHÚ** — Q15 nằm ở **§4** của tệp (không phải §5 mục 4), mang nhãn **PROPOSAL** (không phải DECISION), và ở bản gốc có *Holm trên các ô*; RQ3 G4 sau đó nhận là sai (với 6 ngày gốc, p nhỏ nhất 1/2ⁿ không đạt Holm) nên: probe DEV dùng p chưa hiệu chỉnh + Holm mô tả; nghiên cứu xác nhận chọn họ chính nhỏ hoặc đủ ngày gốc. Quy tắc RQ4 kế thừa: **quyết định theo từng ô; trung vị ΔF1 qua các ngày gốc; Wilcoxon một phía; không gộp các ô.** RQ4 dùng chung quy tắc. | quy tắc chung hai RQ |
 | D33 | "SD giữa các seed" (D30) = SD của `ASR_excess` qua seed trong từng ngày gốc, rồi gộp qua ngày gốc bằng căn bậc hai của trung bình bình phương. | định nghĩa chốt |
 | D34 | Kiểm định **một phía** theo hướng đăng ký trước ⇒ p chính xác nhỏ nhất = 1/2ⁿ. Số ngày gốc `n` phải thỏa `1/2ⁿ < α/m`, `m` = số kiểm định trong họ đã khai báo. Nếu H4a xét (ii) và (iii) qua nhiều ô thì cần hơn 6 ngày gốc (ví dụ `m = 4` cần ≥7). Tiền đăng ký của RQ3 và RQ4 dùng chung quy tắc. | quy tắc cỡ mẫu |
+
+## K. Đối chiếu `THESIS_AUDIT_LOG_RQ3_RQ4_1.md` và xác nhận (2026-11-04)
+
+| ID | Nội dung | Nhãn |
+|---|---|---|
+| D35 | P4a điều kiện (a) = **cận dưới một phía mức 1−α của HL** cho `ASR_excess` qua ngày gốc **> 0** (cùng α với D34); không cần CI hai phía. | NCS xác nhận |
+| D36 | Phạm vi quy tắc `1/2ⁿ < α/m`: **chỉ họ xác nhận đã khai báo**. Probe DEV (P4a–P4d): p chưa hiệu chỉnh làm tiêu chí, p-Holm chỉ mô tả (như RQ3 G4). HOLD vì cỡ mẫu chỉ áp cho nghiên cứu xác nhận. | NCS xác nhận |
+| E1 | **Đính chính của tôi:** số nhãn mỗi nguồn mỗi ngày mà kiểm toán thấy là `b/K` (D14 của nhật ký; dòng dành riêng đi tới cùng nguồn, D17), không phải `(1−η)b/K` như tôi viết ở `02` §1, `03` C-B/2′ và `05` P4b. Đã đính chính tại chỗ. Ví dụ b=1000, K=5: 200 (nhật ký: "200 labels/source/day") thay vì 160; C-B ≈11 ngày thay vì 13 (nhật ký: "~10–13"). Cần NCS xác nhận kiểm toán gồm dòng dành riêng. | sai sót của tôi, đã sửa |
+
+**Đối chiếu khác (khớp):** G0–G4 trạng thái, D1–D14, G2-1…3, G3 (B1, oracle V_t, tuning ≤12, `I_i` TabFM chính), G4 (Q-G4-1…5, thống kê, P4a), §3 các phát hiện, §5 mục 7–11 (khớp O1–O7 của `06`). Nhật ký đếm 38 công trình + [34],[35] = 40, khớp tệp prior art. Nhật ký ghi "koh2022→koh2021" và hai mục bib mới: khớp D23.
