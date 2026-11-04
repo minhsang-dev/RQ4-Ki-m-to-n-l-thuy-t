@@ -65,3 +65,17 @@ Nhãn: `ĐC` = ĐỀ CƯƠNG QUY ĐỊNH · `BC` = BẰNG CHỨNG ĐÃ KIỂM ·
 - [ ] Còn lại thuộc G1–G4
 
 **Dừng tại đây chờ duyệt G0.**
+
+---
+
+## E. Quyết định của NCS sau G0 (2026-11-04) — ghi nhận, áp dụng từ G1
+
+| ID | Quyết định | Nhãn |
+|---|---|---|
+| D1 | `ASR_raw` = FNR = 1 − recall của họ mục tiêu tại ngưỡng vận hành λ_t của Định nghĩa 6. `ASR_excess` = FNR_attacked − FNR_clean (cùng trace, không phòng thủ). Báo cáo cả hai. "Giảm ≥50% tương đối" của H4a đọc trên `ASR_excess`. | Cách đọc này là **ĐỀ XUẤT SỬA (CHƯA DUYỆT)**, chốt trong preregistration; không đổi văn bản v14.3 |
+| D2 | Chưa có tệp DoP ⇒ G2 làm phần độc lập DoP; `f*`, `β` ở trạng thái HOLD | HOLD_PROOF_SOURCE |
+| D3 | Thứ tự: RQ3 chọn dòng chưa nhãn → nhãn đến sau τ → lọc RQ4 → HB2 nạp. "Lọc → chọn → nạp" đọc theo chức năng (ngữ cảnh RQ3 dùng cho g(x) chỉ chứa dòng đã lọc). RQ4 **phải lọc trước khi HB2 nạp** (ràng buộc thiết kế; rủi ro HB2×(ii) phân tích ở G1/G4) | Giải quyết N-3 theo cách đọc chức năng |
+| D4 | b nhãn/ngày chia cho K nguồn mô phỏng, mỗi nguồn = một chuyên viên | Giải quyết N-4 |
+| D5 | Không sửa đề cương; chỉ chuẩn bị phương án | N-6 |
+| D6 | Giữ mở cho G2: V_t phụ thuộc tầng nguồn (vòng lặp nếu tầng nguồn hỏng) | N-5 còn mở |
+| D7 | Kiểm năm/nơi đăng bài Koh et al. ở G3 | — |
