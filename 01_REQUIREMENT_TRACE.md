@@ -93,3 +93,11 @@ Nhãn: `ĐC` = ĐỀ CƯƠNG QUY ĐỊNH · `BC` = BẰNG CHỨNG ĐÃ KIỂM ·
 | D14 (Q7) | **PROPOSAL**: K ∈ {5, 10}; m ∈ {1, 2} khi K=5 và {1, 2, 4} khi K=10; thêm đường cong điểm gãy m = 0..K−1. Giá trị cuối chốt sau P4b (số dòng/nguồn/ngày = b/K quyết định công suất DoP). | PROPOSAL, chưa duyệt |
 
 Ghi chú: D8 làm Mệnh đề 2 yếu đi ở chế độ B (xem `03_PROPOSITION_2_AUDIT.md` §8, Hệ quả 2′-b).
+
+## G. Quyết định của NCS sau G2 (2026-11-04)
+
+| ID | Quyết định | Nhãn |
+|---|---|---|
+| D15 | Cách đọc `f` = **R1** (tỷ lệ lật trên nhãn của nguồn trong ngày — cái audit quan sát). Không dùng R2 để cứu Mệnh đề 2. Trạng thái: Mệnh đề 2 như viết = `ASSUMPTION GAP / COUNTEREXAMPLE`; 2′ = `CANDIDATE`, cần phê duyệt đề xuất. | quyết định phân tích |
+| D16 | Cờ nguồn: **PROPOSAL** chính = bền đến hết lượt chạy hoặc đến khi được xác minh, kèm **giữ hồi tố** các dòng của nguồn đó đang trong ngữ cảnh, `V_t`, `D_cal`; không-hồi-tố là nhạy cảm. Xung đột với giả định A4 của Mệnh đề 1 (RQ2) — loại bỏ hồi tố — T2 đã đánh dấu `OPEN`. | PROPOSAL, chưa duyệt; xung đột RQ2 còn mở |
+| D17 | Nhãn η·b dành riêng: bảo thủ. Dòng dành riêng đi tới cùng các nguồn, đối thủ không phân biệt được, nên nguồn bị chiếm lật với cùng tỷ lệ. Giữ nguy cơ đầu độc `D_cal` (lạm phát `λ_t`) như mối đe dọa có tên trong các probe G4. | quyết định phân tích |

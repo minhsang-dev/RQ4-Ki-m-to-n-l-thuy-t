@@ -172,3 +172,11 @@ Phụ thuộc: `tầng nguồn → V_t → I_i → ACCEPT/HOLD → C_t → mô h
 - **Q-G2-2** Cờ có bền và có xóa dòng cũ khi nguồn bị cờ không?
 - **Q-G2-3** Nhãn η·b dành riêng của nguồn bị chiếm có bị lật không (vai trò V_t, D_cal)?
 - Đặc tả DoP (để mở HOLD).
+
+---
+
+## 13. Giải quyết sau duyệt G2 (D15–D17, `01_REQUIREMENT_TRACE.md` §G)
+
+- Q-G2-1 → **R1**. Hệ quả: kết luận `ASSUMPTION GAP / COUNTEREXAMPLE` giữ nguyên; §6 (R2) chỉ là đối chiếu.
+- Q-G2-2 → cờ bền + giữ hồi tố là **PROPOSAL** chính (khớp M3 của 2′). Hệ quả đã ghi: ràng buộc FPR nguồn nặng hơn vì cờ oan loại vĩnh viễn một nguồn trung thực; cần khóa quy tắc "xác minh" trong prereg. Xung đột với A4 của Mệnh đề 1 (RQ2): hồi tố nghĩa là gỡ dòng đã nạp khỏi ngữ cảnh RQ2; giữ `OPEN` theo T2.
+- Q-G2-3 → bảo thủ (D17): `V_t`, `D_cal` bao gồm nhãn lật của nguồn bị chiếm chưa bị cờ. Phân tích §10 mục 1–3 áp dụng ở dạng xấu nhất.
