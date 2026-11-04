@@ -135,8 +135,8 @@ Giảm `|V_t|` ít giúp (SL): chi phí chủ yếu ở mã hóa ngữ cảnh 20
 | Tấn công | lưới chính (ii)–(v), chế độ A; điểm gãy (i),(vi); chế độ B: cờ oan + (ii) phụ | ĐC; D13 |
 | Đối thủ | K0/K1 (surrogate), không K2; (iv): lật họ mục tiêu, tỷ lệ = ngưỡng tầng nguồn − δ; δ `TBD` sau khi có đặc tả DoP | D11, D12 |
 | ASR | `ASR_raw`, `ASR_excess` (D1); `RR = 1 − ASR_excess(att,def)/ASR_excess(att,none)`; chẩn đoán `ASR_excess_matched` | D1 (ĐX) |
-| Estimand H4a — **PROPOSAL (D37)** | Xem §6c. Mỗi ô × mỗi kiểu (ii)/(iii), không gộp; đạt chỉ khi **cả ba** kiểm định T1–T3 (Wilcoxon một phía, đơn vị = ngày gốc) cùng đạt. F1 = **macro-F1 tại `λ_t`** (D27) | ĐC (50%, ε₄ = 0,01); biên T2: D22 |
-| Estimand H4b — **PROPOSAL (D37)** | Xem §6c, T4. Mỗi ô × mỗi kiểu (iv)/(v), không gộp; **không** có mục tiêu 50% | ĐC |
+| Estimand H4a — **DECISION (D37, D39)** | Xem §6c. Mỗi ô × mỗi kiểu (ii)/(iii), không gộp; đạt chỉ khi **cả ba** kiểm định T1–T3 (Wilcoxon một phía, đơn vị = ngày gốc) cùng đạt. F1 = **macro-F1 tại `λ_t`** (D27) | ĐC (50%, ε₄ = 0,01); biên T2: D22 |
+| Estimand H4b — **DECISION (D37, D39)** | Xem §6c, T4. Mỗi ô × mỗi kiểu (iv)/(v), không gộp; **không** có mục tiêu 50% | ĐC |
 | Báo cáo riêng | H4a, H4b độc lập kết luận | ĐC |
 | Kiểu (ii)–(iii) | **Kết luận H4a riêng cho từng kiểu** (D24): "H4a(ii) đạt/không đạt", "H4a(iii) đạt/không đạt", mỗi kiểu có RR, so RONI, ΔF1. Chỉ được viết "H4a đạt đầy đủ" khi cả hai đạt; nếu chỉ một đạt, viết đúng kiểu đó | D24 |
 | Nhánh | S0–S3, B1 (Nelson-protocol adaptation), B2, B3; B4 tùy chọn (D18) | ĐC; D18 |
@@ -163,7 +163,9 @@ Kiểm định Wilcoxon một phía chính xác: `p_min = 1/2ⁿ`. Điều kiệ
 
 Hệ quả: nếu H4a xét (ii) và (iii) qua nhiều ô thì `m` lớn; ví dụ `m = 4` cần ≥7 ngày gốc (khớp lời NCS). Họ `m` phải khai báo trước cùng với danh sách ô; **Phạm vi (đính chính theo NCS và `THESIS_AUDIT_LOG` §2 cuối):** quy tắc `1/2ⁿ < α/m` chỉ ràng buộc **họ kiểm định xác nhận** đã khai báo; thiếu ngày gốc ở đó ⇒ `HOLD` cho nghiên cứu xác nhận (không đào thêm vòng DEV). Các probe DEV P4a–P4d dùng **p chưa hiệu chỉnh** làm tiêu chí và chỉ báo p-Holm để mô tả (như RQ3 G4); thiếu ngày gốc ở DEV **không** tự dẫn tới HOLD. Họ xác nhận: Holm trên một họ chính nhỏ khai báo trước, hoặc đủ ngày gốc (RQ3 chọn phương án họ chính `m ≤ 3` ô, sau P3a). Cùng quy tắc với tiền đăng ký RQ3.
 
-## 6c. Quy tắc quyết định H4a/H4b — **PROPOSAL** (D37, NCS 2026-11-04; thay thế đề xuất theo mẫu Q15 ở phiên bản trước)
+## 6c. Quy tắc quyết định H4a/H4b — cấu trúc T1–T5 = **DECISION** (D37 → D39, NCS 2026-11-04)
+
+*DECISION* áp dụng cho **cấu trúc**: từng ô × kiểu, đơn vị ngày gốc, Wilcoxon một phía, T1–T5, giao–hợp, `m` đếm theo ô × kiểu, H4a và H4b là hai họ riêng. **Vẫn OPEN, chốt trong tiền đăng ký:** `α`, danh sách ô của họ xác nhận, biên T2 (sau P4a, D22), `B_pass` (sau P4d). Đây là quyết định phân tích của NCS trong tiền đăng ký, không phải sửa đề cương v14.3.
 
 Áp dụng cho **từng ô và từng kiểu tấn công**, không gộp. Đơn vị = **ngày gốc `r`** (mỗi đại lượng là trung vị qua seed/kịch bản trong ngày gốc đó). Mọi kiểm định là Wilcoxon signed-rank **một phía** theo hướng đăng ký trước, mức `α`. Ký hiệu `A(·)` = `ASR_excess` (D1) của nhánh; `none` = S0; `def` = S3; B1 theo D18 (biến thể giảm lặp phải có tên riêng, D25).
 
